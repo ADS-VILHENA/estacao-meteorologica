@@ -9,6 +9,7 @@
       <h6 class="p-3 font-weight-bold text-primary card-text">Proprietário: {{ station.Proprietario.nome }}</h6>
       <h6 class="p-3 font-weight-bold text-primary card-text">Modelo: {{ station.Modelo.descricao }}</h6>
       <h6 class="p-3 font-weight-bold text-primary card-text">Controlador: {{ station.Controlador.descricao }}</h6>
+
     <div>
       <label class="label1">Mudar para fahrenheit:</label>
       <label class="switch">
@@ -28,7 +29,6 @@
       <div class="py-2 d-inline-block font-weight-normal"> 
           <table class="table table-striped first-td-padding">
           <thead>
-
             <tr class="text-nowrap bd-highlight " >
               <th scope="col">Data do Evento</th>
               <th scope="col">Temperatura</th>
@@ -47,39 +47,29 @@
               <td>{{ event.direcaoVento }} </td>
               <td>{{ event.preciptacaoChuva }} MM</td>
             </tr>
-
-             <tr v-for="(event, id) in eventStation" v-bind:key="id">
-              <th scope="row">{{ new Date(event.tempoInclusao).toLocaleString() }}</th>
-              <td>{{ event.temperatura }} º</td>
-              <td>{{ event.umidade }} %</td>
-              <td>{{ event.velocidadeVento }} km/h</td>
-              <td>{{ event.direcaoVento }} </td>
-              <td>{{ event.preciptacaoChuva }} MM</td>
-            </tr>
-
-             <tr v-for="(event, id) in eventStation" v-bind:key="id">
-              <th scope="row">{{ new Date(event.tempoInclusao).toLocaleString() }}</th>
-              <td>{{ event.temperatura }} º</td>
-              <td>{{ event.umidade }} %</td>
-              <td>{{ event.velocidadeVento }} km/h</td>
-              <td>{{ event.direcaoVento }} </td>
-              <td>{{ event.preciptacaoChuva }} MM</td>
-            </tr>
-  
           </tbody>
         </table>
+         
       </div>
     </div>
+     <div>
+          <label class="switch">
+             <input type="checkbox">
+             <span class="slider round"></span> 
+         </label>
+           <label for="" class="label">Mudar para fahrenheit</label>
+          </div>
+ 
 </div>
 </template>
 <script>
+
+
 export default {
   data: () => {
     return {
       eventStation: [],
       station: '',
-
-
     }
   },
 
@@ -153,7 +143,6 @@ export default {
     this.getStation()
   },
   computed: {
-    
    
   }
 
@@ -174,6 +163,7 @@ export default {
   width: 52px;
   height: 28px;
   margin-left: 15px;
+
 }
 
 .switch input {
@@ -224,5 +214,9 @@ input:checked + .slider:before {
 
 .slider.round {
   border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 45%;
 }
 </style>
