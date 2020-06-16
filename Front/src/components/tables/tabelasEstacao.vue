@@ -13,7 +13,7 @@
     <div>
       <label class="label1">Mudar para fahrenheit:</label>
       <label class="switch">
-        <input type="checkbox" v-on:click="converter()">
+        <input type="checkbox" id="checktemp" v-on:click="converter()">
         <span class="slider round"></span> 
       </label>
     </div>
@@ -52,13 +52,6 @@
          
       </div>
     </div>
-     <div>
-          <label class="switch">
-             <input type="checkbox">
-             <span class="slider round"></span> 
-         </label>
-           <label for="" class="label">Mudar para fahrenheit</label>
-          </div>
  
 </div>
 </template>
@@ -76,20 +69,19 @@ export default {
   methods: {
 
     converter(){
-      
-      let temperatura = this.selectestacao.Evento.temperatura
-
-      if(tipoGrau == 1){
-        //convertendo para graus Celsius
-        temperatura = ((temperatura - 32) * 5) / 9
-        this.selectestacao.Evento.temperatura = temperatura
-
-      }else{
-        //convertendo para grau Fahrenheit
-        temperatura = ((temperatura * 9) / 5 ) + 32
-        this.selectestacao.Evento.temperatura = temperatura
+      var checkBox = document.getElementById("checktemp");
+      let temperatura = this.eventStation[0].temperatura
         
-      }
+      if(checkBox.checked == true){
+        // convertendo para grau Fahrenheit
+        temperatura = ((temperatura * 9) / 5 ) + 32
+        this.eventStation[0].temperatura = temperatura
+        
+      }else{
+        // convertendo para graus Celsius
+        temperatura = ((temperatura - 32) * 5) / 9
+        this.eventStation[0].temperatura = temperatura.toFixed(1)
+       }
     },
 
     getEvent (){
