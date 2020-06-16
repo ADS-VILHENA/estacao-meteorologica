@@ -156,22 +156,6 @@ export default {
       })
       .catch((erro) => console.log('DEU ERRO: Segue o erro ->' + erro))
     },
-    
-    converter(tipoGrau){
-      console.log('entrando na função de converter: ' + tipoGrau)
-      let temperatura = this.selectestacao.Evento.temperatura
-
-      if(tipoGrau == 1){
-        // convertendo para graus Celsius
-        temperatura = ((temperatura - 32) * 5) / 9
-        this.selectestacao.Evento.temperatura = temperatura
-      }else{
-        // convertendo para grau Fahrenheit
-        temperatura = ((temperatura * 9) / 5 ) + 32
-        this.selectestacao.Evento.temperatura = temperatura
-      }
-
-    },
     // Fim do methods
     },
     
