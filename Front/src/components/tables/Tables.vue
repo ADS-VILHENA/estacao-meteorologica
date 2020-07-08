@@ -24,11 +24,11 @@
               <tr v-for="(evento, id) in eventStation01" v-bind:key="id">
                 <td>{{ new Date(evento.tempoInclusao).toLocaleString() }}</td>
                 <td>{{ selectStation.descricao }}</td>
-                <td>{{ evento.temperatura }} º</td>
+                <td>{{ evento.temperatura.toFixed(2) }} º</td>
                 <td>{{ evento.umidade }}</td>
                 <td>{{ evento.velocidadeVento }}</td>
                 <td>{{ evento.direcaoVento }}</td>
-                <td>{{ evento.preciptacaoChuva }} ML</td>
+                <td>{{ evento.preciptacaoChuva }} mm</td>
               </tr>
 
               </tbody>
@@ -78,7 +78,7 @@ export default {
          mode: 'cors',
       }
       console.log('entrando na função GetEvent')
-      return fetch(`https://cryptic-cove-06248.herokuapp.com/api/v1/estacao/${this.selectStation.id}/eventos?page=${this.paginacao}&pageSize=5`, options)
+      return fetch(`https://cryptic-cove-06248.herokuapp.com/api/v1/estacao/${this.selectStation.id}/eventos?page=${this.paginacao}&pageSize=10`, options)
       .then(res => res.json())
       .then((res) =>{
         this.eventStation01 = []

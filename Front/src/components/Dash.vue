@@ -14,7 +14,7 @@
                   <div class="card-body">
                     <i class="fa fa-thermometer fa-2x" style="margin-top:10px;margin-right:15px;color:#dc3545;"></i>
                     <b class="card-text ">Temperatura</b>
-                    <h1 class="card-title text-danger ">{{mediaTemperatura ? mediaTemperatura : '-'}} ºC</h1>
+                    <h1 class="card-title text-danger ">{{mediaTemperatura ? mediaTemperatura.toFixed(2) : '-'}} ºC</h1>
                   </div>
                 </div>
               </div>
