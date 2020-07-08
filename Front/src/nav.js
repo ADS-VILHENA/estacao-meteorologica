@@ -24,15 +24,6 @@ export default {
         variant: 'success',
         text: 'NOVO'
       }
-    },
-    {
-      name: 'Teste gráficos',
-      url: '/components/chartjs',
-      icon: 'fa fa-pie-chart',
-      badge: {
-        variant: 'warning',
-        text: 'TESTE'
-      }
-    },
+    }
   ]
 }
