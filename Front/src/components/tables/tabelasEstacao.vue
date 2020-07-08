@@ -70,18 +70,24 @@ export default {
 
     converter(){
       var checkBox = document.getElementById("checktemp");
-      let temperatura = this.eventStation[0].temperatura
+
+     this.eventStation.forEach((item, index) =>{
+       let temperatura = this.eventStation[index].temperatura
         
       if(checkBox.checked == true){
         // convertendo para grau Fahrenheit
         temperatura = ((temperatura * 9) / 5 ) + 32
-        this.eventStation[0].temperatura = temperatura
+        this.eventStation[index].temperatura = temperatura
+        console.log('convertendo para grau Fahrenheit')
         
       }else{
         // convertendo para graus Celsius
         temperatura = ((temperatura - 32) * 5) / 9
-        this.eventStation[0].temperatura = temperatura.toFixed(1)
+        this.eventStation[index].temperatura = temperatura.toFixed(1)
+        console.log('convertendo para graus Celsius')
        }
+     })
+      
     },
 
     getEvent (){
@@ -99,8 +105,9 @@ export default {
       .then((res) =>{
         console.log('Busca de dados efetuada para GetEvent')
         
-        res.forEach(element => {
+        res.forEach((element, index) => { 
           this.eventStation.push(element)
+          
         });
         console.log(this.eventStation)
       })

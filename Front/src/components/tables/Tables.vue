@@ -1,8 +1,8 @@
 <template>
   <div>
-
       <div class="col-xs-12 col-md-12">
         <card header-text="Eventos">
+
           <select name="" id="" class="form-control mb-3" v-model="selectStation" v-on:change="select()">
               <option v-for="(estacao, id) in estacoes" v-bind:key="id" v-bind:value="estacao">{{estacao.descricao}} </option>
         </select>
@@ -16,13 +16,11 @@
                 <td>Umidade</td>
                 <td>Velocidade do vento</td>
                 <td>Direção do Vento</td>
-                <td>Precipitação de Chuva</td>
-                
-                <td></td>
+                <td>Precipitação de Chuva</td>  
+              <td></td>
               </tr>
               </thead>
               <tbody>
-
               <tr v-for="(evento, id) in eventStation01" v-bind:key="id">
                 <td>{{ new Date(evento.tempoInclusao).toLocaleString() }}</td>
                 <td>{{ selectStation.descricao }}</td>
@@ -70,9 +68,17 @@ export default {
 
    
 // Buscar eventos da estação pelo id
-    getEvent() {
+     getEvent() {
+      const options = { 
+        method: 'GET',
+        headers:{
+            'Content-Type': 'application/json',
+            'Host':'cryptic-cove-06248.herokuapp.com'
+        },
+         mode: 'cors',
+      }
       console.log('entrando na função GetEvent')
-      return fetch(`https://meteorologia.adsvilhena.ninja/api/v1/estacao/${this.selectStation.id}/eventos?page=${this.paginacao}&pageSize=5`)
+      return fetch(`https://cryptic-cove-06248.herokuapp.com/api/v1/estacao/${this.selectStation.id}/eventos?page=${this.paginacao}&pageSize=5`, options)
       .then(res => res.json())
       .then((res) =>{
         this.eventStation01 = []
@@ -83,12 +89,22 @@ export default {
         console.log(this.eventStation01)
       })
       .catch(erro => console.log(erro))
-    },
+  },
+
 
 // Buscar todas as estações cadastradas
     getStation (){
+      let qtdEventos = 0
+      const options = { 
+        method: 'GET',
+        headers:{
+            'Content-Type': 'application/json',
+            'Host':'cryptic-cove-06248.herokuapp.com'
+        },
+         mode: 'cors',
+      }
       console.log('entrando na função Buscar estações')
-      return fetch(`http://meteorologia.adsvilhena.ninja//api/v1/estacao`)
+      return fetch(`https://cryptic-cove-06248.herokuapp.com/api/v1/`, options)
       .then(res => res.json())
       .then((res) =>{
         res.forEach(element => {
